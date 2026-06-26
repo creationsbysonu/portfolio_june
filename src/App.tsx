@@ -572,7 +572,7 @@ function App() {
               </li>
             ))}
             <li>
-              <a href="/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+              <a href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
             </li>
           </ul>
         </nav>
@@ -583,7 +583,7 @@ function App() {
               {item.label}
             </a>
           ))}
-          <a href="/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <a href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
         </div>
       </header>
 
@@ -634,7 +634,7 @@ function App() {
                 <a className="cta-button" href="#work">
                   Selected work
                 </a>
-                <a className="text-link" href="/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+                <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
                 <a className="text-link" href="#contact">Contact</a>
               </div>
               <div className="hero-stats" aria-label="Highlights">
