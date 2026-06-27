@@ -505,6 +505,11 @@ function App() {
     }
   }, [hasCompletedIntro, isHeaderMode])
 
+  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault()
+    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+  }
+
   return (
     <div className="portfolio-shell">
       <AnimatePresence>
@@ -582,7 +587,7 @@ function App() {
               )}
             </AnimatePresence>
           </div>
-          <a className="brand-name" href="#home" style={{ display: 'flex', alignItems: 'center', minWidth: '120px' }}>
+          <a className="brand-name" href="#home" onClick={(e) => scrollToSection(e, 'home')} style={{ display: 'flex', alignItems: 'center', minWidth: '120px' }}>
             <AnimatePresence>
               {isHeaderMode && (
                 <motion.span
@@ -614,10 +619,7 @@ function App() {
                 <a 
                   className={activeSection === item.href.slice(1) ? 'active' : ''} 
                   href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
-                  }}
+                  onClick={(e) => scrollToSection(e, item.href.slice(1))}
                 >
                   {item.label}
                 </a>
@@ -635,9 +637,8 @@ function App() {
               key={item.href} 
               href={item.href} 
               onClick={(e) => {
-                e.preventDefault();
                 setMobileMenuOpen(false);
-                document.getElementById(item.href.slice(1))?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(e, item.href.slice(1));
               }}
             >
               {item.label}
@@ -691,11 +692,11 @@ function App() {
             <div className={`reveal-group hero-copy-block ${heroReveal.isVisible ? 'is-visible' : ''}`}>
               <h1>Intelligent systems. Scalable products. Real impact.</h1>
               <div className="hero-actions">
-                <a className="cta-button" href="#work">
+                <a className="cta-button" href="#work" onClick={(e) => scrollToSection(e, 'work')}>
                   Selected work
                 </a>
                 <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
-                <a className="text-link" href="#contact">Contact</a>
+                <a className="text-link" href="#contact" onClick={(e) => scrollToSection(e, 'contact')}>Contact</a>
               </div>
               <div className="hero-stats" aria-label="Highlights">
                 <div>
@@ -960,7 +961,7 @@ function App() {
 
       <footer className="site-footer">
         <p>Designed & developed by Sonu Kumar Gupta · ©2026</p>
-        <a href="#home" className="text-link">
+        <a href="#home" className="text-link" onClick={(e) => scrollToSection(e, 'home')}>
           Back to top
         </a>
       </footer>
