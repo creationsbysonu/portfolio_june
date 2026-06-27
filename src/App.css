@@ -873,22 +873,46 @@
 }
 
 .contact-links {
-  display: grid;
-  gap: 12px;
-  grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+  display: flex;
+  justify-content: center;
+  gap: 16px;
 }
 
 .contact-links a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 48px;
-  border-radius: 18px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.72);
   color: var(--text-strong);
-  font-weight: 500;
   box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.contact-links a:hover {
+  transform: translateY(-4px);
+  background: #fff;
+  box-shadow: var(--shadow-lg);
+}
+
+.contact-links a svg {
+  width: 24px;
+  height: 24px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }
 
 .site-footer {
