@@ -104,7 +104,7 @@ const achievements = [
     title: 'Leadership & Community',
   },
   {
-    quote: 'Developed real-world AI systems including computer vision search engines and multilingual question answering platforms.',
+    quote: 'Researching and designing scalable architectural patterns—analogous to MVC in software engineering—to streamline data pipelines and model training workflows in machine learning.',
     name: 'AI & Open Source',
     title: 'Research & Development',
   },
@@ -125,7 +125,7 @@ const education = [
 
 const contactLinks = [
   { label: 'Email', href: 'mailto:sonugupta.ioepc.edu.np@gmail.com' },
-  { label: 'LinkedIn', href: 'https://linkedin.com/in/sonu-gupta-681329340' },
+  { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sonu-gupta-681329340/' },
   { label: 'GitHub', href: 'https://github.com/creationsbysonu' },
 ]
 
@@ -266,6 +266,25 @@ const SECONDARY_CARDS = [
     desc: "Building for humans and machines alike."
   }
 ];
+
+const galleryImages = [
+  {
+    url: '',
+    caption: 'Your Caption Here'
+  },
+  {
+    url: '',
+    caption: 'Your Caption Here'
+  },
+  {
+    url: '',
+    caption: 'Your Caption Here'
+  },
+  {
+    url: '',
+    caption: 'Your Caption Here'
+  }
+]
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -815,6 +834,22 @@ function App() {
           </div>
         </section>
 
+        <section id="education" className="section-block section-block--cinematic" data-section="education" ref={articlesReveal.ref}>
+          <div className={`section-heading section-heading--split ${articlesReveal.isVisible ? 'is-visible' : ''}`}>
+            <p className="section-kicker">Background</p>
+            <h2>Education.</h2>
+          </div>
+          <div className="article-grid">
+            {education.map((article) => (
+              <article key={article.title} className="article-card">
+                <p className="mono-label">{article.tag}</p>
+                <h3>{article.title}</h3>
+                <p>{article.readTime}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+
         <section id="achievements" className="section-block section-block--cinematic" data-section="achievements" ref={testimonialsReveal.ref}>
           <div className={`section-heading section-heading--split ${testimonialsReveal.isVisible ? 'is-visible' : ''}`}>
             <p className="section-kicker">Milestones</p>
@@ -833,21 +868,29 @@ function App() {
           </div>
         </section>
 
-        <section id="education" className="section-block section-block--cinematic" data-section="education" ref={articlesReveal.ref}>
-          <div className={`section-heading section-heading--split ${articlesReveal.isVisible ? 'is-visible' : ''}`}>
-            <p className="section-kicker">Background</p>
-            <h2>Education.</h2>
-          </div>
-          <div className="article-grid">
-            {education.map((article) => (
-              <article key={article.title} className="article-card">
-                <p className="mono-label">{article.tag}</p>
-                <h3>{article.title}</h3>
-                <p>{article.readTime}</p>
-              </article>
-            ))}
-          </div>
-        </section>
+      <section id="gallery" className="gallery-section fade-in">
+        <h2 className="section-title">
+          Gallery
+          <div className="section-title-line"></div>
+        </h2>
+        <div className="gallery-grid">
+          {galleryImages.map((image, i) => (
+            <div className="gallery-item" key={i}>
+              {image.url ? (
+                <img src={image.url} alt={image.caption} className="gallery-img" />
+              ) : (
+                <div className="gallery-placeholder">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="placeholder-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                  <span>Add Image</span>
+                </div>
+              )}
+              <div className="gallery-overlay">
+                <p className="gallery-caption">{image.caption}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
         <section id="contact" className="contact-block section-block--cinematic" data-section="contact" ref={contactReveal.ref}>
           <div className={`section-heading section-heading--split ${contactReveal.isVisible ? 'is-visible' : ''}`}>
@@ -876,6 +919,7 @@ function App() {
             </a>
           </div>
         </section>
+
       </main>
 
       <footer className="site-footer">
