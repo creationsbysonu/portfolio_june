@@ -172,7 +172,7 @@ export default function ResumePage() {
         </section>
         
         <div className="resume-footer">
-          <a href="/" className="back-btn">← Back to Portfolio</a>
+          <a href="#/" className="back-btn">← Back to Portfolio</a>
           <div className="resume-actions">
             <button onClick={() => window.print()} className="print-btn">Print</button>
             <a href="/professional_resume_sonu.pdf" download className="download-btn">Download PDF</a>

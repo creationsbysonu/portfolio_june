@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
+import Lottie from 'react-lottie-player'
 
 import './App.css'
 
@@ -19,6 +20,9 @@ const featuredProjects = [
     stack: ['ViT', 'Python', 'FastAPI', 'React', 'Tailwind'],
     year: 'AI / ML',
     outcome: 'Real-time search with accurate SKU mapping.',
+    lottie: 'https://cdn.lordicon.com/msoeawqm.json',
+    demoLink: '#',
+    githubLink: '#',
   },
   {
     title: 'Multilingual RAG Question Answering System',
@@ -26,6 +30,9 @@ const featuredProjects = [
     stack: ['Python', 'Transformers', 'Vector DB', 'NLP'],
     year: 'AI / ML',
     outcome: 'Improved accessibility for regional users.',
+    lottie: 'https://cdn.lordicon.com/zpxybbhl.json',
+    demoLink: '#',
+    githubLink: '#',
   },
   {
     title: 'Stutter Detection System for Nepali and Hindi',
@@ -33,6 +40,9 @@ const featuredProjects = [
     stack: ['Python', 'Speech Processing', 'Machine Learning'],
     year: 'AI / ML',
     outcome: 'Classifies fluent versus disfluent speech.',
+    lottie: '/lottie-speaking.json',
+    demoLink: '#',
+    githubLink: '#',
   },
   {
     title: 'Bhoko Pet - Food Delivery Application',
@@ -40,6 +50,9 @@ const featuredProjects = [
     stack: ['React', 'Node.js', 'Express', 'MongoDB'],
     year: 'Software',
     outcome: 'Responsive UI and robust REST APIs.',
+    lottie: 'https://cdn.lordicon.com/qhviklyi.json',
+    demoLink: '#',
+    githubLink: '#',
   },
   {
     title: 'Scalable E-Commerce Platform',
@@ -47,6 +60,9 @@ const featuredProjects = [
     stack: ['React.js', 'Node.js', 'MongoDB'],
     year: 'Software',
     outcome: 'Optimized database queries for fast performance.',
+    lottie: 'https://cdn.lordicon.com/cllunfud.json',
+    demoLink: '#',
+    githubLink: '#',
   },
 ]
 
@@ -63,7 +79,7 @@ const capabilities = [
   'React.js / React Native',
   'Node.js / Express',
   'FastAPI / Flask',
-  'Computer Vision (ViT)',
+  'Transformers',
   'NLP & RAG Systems',
   'MongoDB / MySQL',
 ]
@@ -84,7 +100,7 @@ const experiences = [
 const achievements = [
   {
     quote: 'Selected for the Google Student Ambassador Program 2026. I value innovation, leadership, and continuous learning.',
-    name: 'Google Student Ambassador ’26',
+    name: 'Google Gemini Student Ambassador ’26',
     title: 'Leadership & Community',
   },
   {
@@ -102,7 +118,7 @@ const education = [
   },
   {
     title: 'Higher Secondary Education (Science)',
-    readTime: 'Lord Buddha Higher Secondary School · 2019 – 2021',
+    readTime: 'Lord Buddha Higher Secondary School, Biratnagar · 2019 – 2021',
     tag: '+2 Science',
   },
 ]
@@ -223,7 +239,7 @@ const FOCUS_CARDS = [
   },
   {
     label: "Role",
-    title: "Google Student Ambassador '26.",
+    title: "Google Gemini Student Ambassador '26.",
     desc: "Empowering global tech communities."
   },
   {
@@ -293,11 +309,11 @@ function App() {
     const timer = setInterval(() => {
       setFocusIndex(prev => (prev + 1) % FOCUS_CARDS.length)
     }, 4500)
-    
+
     const secondaryTimer = setInterval(() => {
       setSecondaryIndex(prev => (prev + 1) % SECONDARY_CARDS.length)
     }, 5500)
-    
+
     return () => {
       clearInterval(timer)
       clearInterval(secondaryTimer)
@@ -590,10 +606,10 @@ function App() {
       <main>
         <section id="home" className="hero-section" data-section="home" ref={heroReveal.ref} style={heroMotion}>
           <div className="hero-layout">
-            <aside className="hero-aside" style={{ display: 'flex', flexDirection: 'column', height: 'calc(100vh - 120px)', position: 'sticky', top: '100px' }}>
+            <aside className="hero-aside">
               <p className="mono-label">AI/ML Engineer</p>
               <p className="mono-label">Full Stack Developer</p>
-              <p className="mono-label" style={{ marginTop: '8px' }}>Google Student Ambassador '26</p>
+              <p className="mono-label" style={{ marginTop: '8px' }}>Google Gemini Student Ambassador '26</p>
               <p className="hero-meta">
                 Qualified Computer Engineer<br />
                 Tribhuvan University, IOE Purwanchal Campus<br />
@@ -612,7 +628,7 @@ function App() {
                   </div>
 
                   {/* Paper Content */}
-                  <motion.div style={{ width: '92%', height: papyrusHeight, background: '#fcfbf8', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0 0 40px rgba(184, 157, 125, 0.15), inset 0 8px 10px rgba(0,0,0,0.04)', position: 'relative' }}>
+                  <motion.div className="papyrus-content" style={{ width: '92%', height: papyrusHeight, background: '#fcfbf8', overflow: 'hidden', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: 'inset 0 0 40px rgba(184, 157, 125, 0.15), inset 0 8px 10px rgba(0,0,0,0.04)', position: 'relative' }}>
                     <div style={{ padding: '30px 24px', textAlign: 'center', fontFamily: 'serif', color: '#4a3b2c', fontSize: '1.05rem', lineHeight: 1.8 }}>
                       <span style={{ fontStyle: 'italic' }}>"The true sign of intelligence is not knowledge but imagination."</span>
                       <div style={{ marginTop: '16px', fontWeight: 600, fontSize: '0.9rem', opacity: 0.8 }}>- ALBERT EINSTEIN</div>
@@ -672,7 +688,7 @@ function App() {
                   </motion.div>
                 </AnimatePresence>
               </div>
-              
+
               <div className="hero-card hero-card--dark" style={{ position: 'relative', perspective: '1200px', marginTop: 'auto', marginBottom: '10px' }}>
                 <AnimatePresence>
                   <motion.div
@@ -724,6 +740,17 @@ function App() {
               >
                 <div className="project-visual" aria-hidden="true">
                   <span className="project-badge">0{index + 1}</span>
+                  {project.lottie && (
+                    <div className="project-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                      <Lottie
+                        loop
+                        animationData={undefined}
+                        path={project.lottie}
+                        play
+                        style={{ width: '80%', height: '80%', filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.1))' }}
+                      />
+                    </div>
+                  )}
                   <div className="project-gradient" />
                   <div className="project-line" />
                 </div>
@@ -737,6 +764,10 @@ function App() {
                     ))}
                   </ul>
                   <p className="project-outcome">{project.outcome}</p>
+                  <div className="project-links">
+                    <a href={project.demoLink} target="_blank" rel="noreferrer" className="project-link primary">Try it out ↗</a>
+                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="project-link secondary">GitHub Repo ↗</a>
+                  </div>
                 </div>
               </article>
             ))}
@@ -754,7 +785,7 @@ function App() {
                 I am a qualified Computer Engineer, having graduated from IOE Purwanchal Campus, Tribhuvan University. I am deeply passionate about building intelligent systems and scalable software solutions. My work spans Computer Vision, NLP, Vision Transformers (ViT), and full-stack AI-powered applications using the MERN stack.
               </p>
               <p>
-                I enjoy turning research ideas into practical products that create real-world impact. Selected for the Google Student Ambassador Program 2026, I value innovation, leadership, and continuous learning. Currently, I’m focused on advancing my expertise in AI, SaaS development, and emerging technologies, with aspirations to contribute to world-class technology companies. I believe technology is most powerful when it empowers people—and that’s the kind of future I strive to build. Open to collaborations, research opportunities, and innovative projects.
+                I enjoy turning research ideas into practical products that create real-world impact. Selected for the Google Gemini Student Ambassador Program 2026, I value innovation, leadership, and continuous learning. Currently, I’m focused on advancing my expertise in AI, SaaS development, and emerging technologies, with aspirations to contribute to world-class technology companies. I believe technology is most powerful when it empowers people—and that’s the kind of future I strive to build. Open to collaborations, research opportunities, and innovative projects.
               </p>
             </div>
             <div>
