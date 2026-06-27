@@ -64,6 +64,16 @@ const featuredProjects = [
     demoLink: '#',
     githubLink: '#',
   },
+  {
+    title: 'Pharmacy Management System (AUSADHI KINMEL)',
+    description: 'Web-based DBMS project to streamline pharmacy operations including inventory tracking, billing, supplier management, and user authentication.',
+    stack: ['PHP', 'MySQL', 'phpMyAdmin'],
+    year: 'Software',
+    outcome: 'Deepened understanding of database design and query optimization.',
+    lottie: '/lottie-pharmacy.json',
+    demoLink: '#',
+    githubLink: 'https://lnkd.in/dtHBkjaE',
+  },
 ]
 
 const stats = [

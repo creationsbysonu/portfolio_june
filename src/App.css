@@ -599,7 +599,11 @@
 }
 
 .project-card:nth-child(5) {
-  grid-column: span 12;
+  grid-column: span 7;
+}
+
+.project-card:nth-child(6) {
+  grid-column: span 5;
 }
 
 .project-card {
@@ -615,12 +619,9 @@
 }
 
 .project-card:nth-child(2) .project-visual,
-.project-card:nth-child(4) .project-visual {
+.project-card:nth-child(4) .project-visual,
+.project-card:nth-child(6) .project-visual {
   min-height: 260px;
-}
-
-.project-card:nth-child(5) .project-visual {
-  min-height: 360px;
 }
 
 .project-card:nth-child(1) .project-gradient {
@@ -639,7 +640,8 @@
 
 .project-card:nth-child(3) .project-gradient,
 .project-card:nth-child(4) .project-gradient,
-.project-card:nth-child(5) .project-gradient {
+.project-card:nth-child(5) .project-gradient,
+.project-card:nth-child(6) .project-gradient {
   background:
     radial-gradient(circle at 28% 22%, rgba(205, 197, 184, 0.28), transparent 32%),
     radial-gradient(circle at 70% 52%, rgba(255, 255, 255, 0.8), transparent 24%),
