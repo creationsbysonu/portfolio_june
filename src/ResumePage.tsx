@@ -12,13 +12,13 @@ export default function ResumePage() {
         <header className="resume-header">
           <div className="resume-header-content">
             <h1>Sonu Gupta</h1>
-            <h2>AI/ML Engineer and Tech Lead</h2>
-            <p>Computer Engineering Graduate</p>
-            <p>Institute of Engineering, Purwanchal Campus</p>
-            <p>Dharan, Nepal</p>
+            <h2>Computer Engineer · IT Analyst</h2>
+            <p>Implementation &amp; Support</p>
+            <p>Nepal Engineering Council Reg. No. 102745</p>
+            <p>Kathmandu, Nepal</p>
           </div>
           <div className="resume-contact">
-            <p><strong>Email:</strong> <a href="mailto:sonugupta.ioepc.edu.np@gmail.com">sonugupta.ioepc.edu.np@gmail.com</a></p>
+            <p><strong>Email:</strong> <a href="mailto:studybysonugupta@gmail.com">studybysonugupta@gmail.com</a></p>
             <p><strong>Portfolio:</strong> <a href="https://guptasonu.com.np" target="_blank" rel="noreferrer">guptasonu.com.np</a></p>
             <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/sonu-gupta" target="_blank" rel="noreferrer">sonu-gupta</a></p>
             <p><strong>GitHub:</strong> <a href="https://github.com/creationsbysonu" target="_blank" rel="noreferrer">creationsbysonu</a></p>
@@ -26,151 +26,196 @@ export default function ResumePage() {
         </header>
 
         <section className="resume-section">
-          <h3 className="section-title">Professional Summary</h3>
+          <h3 className="section-title">Profile</h3>
           <p>
-            A highly analytical and forward-thinking Computer Engineering graduate specializing in backend development, AI integrations, and full-stack system architectures. Demonstrates a strong technical track record in configuring robust relational data configurations, machine learning inference flows, and optimized pipeline automation. Experienced in cross-functional leadership, design-to-code conversions, and deploying user-centric digital applications. Passionate about resolving algorithmic infrastructure bottlenecks and writing clean, scalable codebase ecosystems.
+            A detail-oriented and motivated Computer Engineer with over a year of hands-on experience in IT
+            operations, system implementation, and technical support. Proven ability to troubleshoot operational
+            issues, train end-users on web and mobile applications, and coordinate seamlessly across
+            cross-functional teams. Strong communicator and problem-solver, adept at using MS Office, digital
+            tools, and analytical dashboards to maintain accurate records, improve process efficiency, and deliver
+            exceptional client support.
           </p>
         </section>
 
         <section className="resume-section">
-          <h3 className="section-title">Education</h3>
-          
+          <h3 className="section-title">Work Experience</h3>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>ST. JOSEPH SCHOOL</h4>
+              <span className="resume-date">Mar 2025 – Mar 2026</span>
+            </div>
+            <div className="resume-item-subheader">
+              <span className="resume-degree">IT Lead &amp; Computer Science Instructor</span>
+              <span className="resume-date">Biratnagar, Nepal</span>
+            </div>
+            <ul className="skills-list">
+              <li>Directed IT infrastructure and supported digital platform operations, providing hands-on training and troubleshooting for 70–75 staff members to ensure smooth adoption of new web-based technologies.</li>
+              <li>Responded to internal queries promptly and professionally, resolving operational and technical issues on a daily basis.</li>
+              <li>Maintained accurate digital asset trackers and databases for an institution of 1,500+ students, using MS Excel, Word, and Google Slides to prepare summary reports and track process improvements.</li>
+              <li>Implemented automated reporting workflows, saving over 10 hours of manual operational work per week.</li>
+            </ul>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>FREELANCE</h4>
+              <span className="resume-date">2022 – 2024</span>
+            </div>
+            <div className="resume-item-subheader">
+              <span className="resume-degree">Full Stack Engineer (Web Applications)</span>
+              <span className="resume-date">Remote</span>
+            </div>
+            <ul className="skills-list">
+              <li>Delivered end-to-end implementation for 10+ web-based client applications, coordinating closely with clients to understand requirements and ensure smooth, uninterrupted workflows.</li>
+              <li>Provided post-launch technical support and client training, enabling users to independently manage digital dashboards and extract business intelligence.</li>
+              <li>Upheld high professional standards in documentation and communication throughout the project lifecycles.</li>
+            </ul>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>DIGITAL PATHSHALA</h4>
+              <span className="resume-date">Jun 2025 – Aug 2025</span>
+            </div>
+            <div className="resume-item-subheader">
+              <span className="resume-degree">MERN Stack Developer Intern</span>
+              <span className="resume-date">Remote, Nepal</span>
+            </div>
+            <ul className="skills-list">
+              <li>Supported the implementation, testing, and troubleshooting of scalable web applications for a major educational platform.</li>
+              <li>Coordinated with different teams to fix technical bugs and optimize knowledge management workflows.</li>
+            </ul>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="section-title">Projects</h3>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>Pharmacy DBMS Analytics (Ausadhi Kinmel)</h4>
+              <span className="resume-date">Implementation</span>
+            </div>
+            <p className="resume-details">
+              Implemented and maintained a web-based relational database to track inventory, suppliers, and
+              billing. Provided hands-on training to end-users and offered continuous support to troubleshoot
+              reporting issues. <strong>Tech:</strong> MySQL, PHP.
+            </p>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>AI-Powered Visual Search Platform (e-Pasal)</h4>
+              <span className="resume-date">2025 – 2026</span>
+            </div>
+            <p className="resume-details">
+              Supported the deployment of a digital asset system handling 100,000+ images. Used emerging
+              technologies to optimize search processes and ensure smooth internal workflows.{' '}
+              <strong>Tech:</strong> Python, Vector Search.
+            </p>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="section-title">Fellowships &amp; Leadership</h3>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>EXCESS DATA FELLOWSHIP (COHORT 3)</h4>
+              <span className="resume-date">Data Fellow</span>
+            </div>
+            <p className="resume-details">
+              Trained in scalable analytics practices, problem-solving, and efficient data architecture.
+            </p>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>FUSE AI NEPAL</h4>
+              <span className="resume-date">AI Fellow</span>
+            </div>
+            <p className="resume-details">
+              Collaborated with teams on testing applied machine learning tools and technical integrations.
+            </p>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>GOOGLE GEMINI STUDENT AMBASSADOR</h4>
+              <span className="resume-date">2026 Cohort</span>
+            </div>
+            <p className="resume-details">
+              Selected as a campus ambassador, running technical sessions on AI frameworks and mentoring student
+              developers.
+            </p>
+          </div>
+        </section>
+
+        <section className="resume-section">
+          <h3 className="section-title">Education &amp; Qualifications</h3>
+
           <div className="resume-item">
             <div className="resume-item-header">
               <h4>TRIBHUVAN UNIVERSITY</h4>
-              <span className="resume-date">IOE, Purwanchal Campus, Dharan, Nepal</span>
+              <span className="resume-date">2022 – 2026</span>
             </div>
             <div className="resume-item-subheader">
-              <span className="resume-degree">Bachelor in Computer Engineering</span>
-              <span className="resume-date">Result Awaiting (Exams Completed, 2026)</span>
+              <span className="resume-degree">B.E. in Computer Engineering</span>
+              <span className="resume-date">First Division (69.74%)</span>
             </div>
-            <p className="resume-details"><strong>Seventh Semester Score:</strong> 73.58% | <strong>Coursework:</strong> Database Management Systems, Software Engineering, Computer Networks, Data Analysis.</p>
+            <p className="resume-details">IOE Purwanchal Campus, Dharan, Nepal.</p>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>NEPAL ENGINEERING COUNCIL</h4>
+              <span className="resume-date">Licensure</span>
+            </div>
+            <p className="resume-details">
+              Registered Computer Engineer, Reg. No. 102745.
+            </p>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>DATACAMP</h4>
+              <span className="resume-date">Certification</span>
+            </div>
+            <p className="resume-details">Data Engineer Certification.</p>
           </div>
 
           <div className="resume-item">
             <div className="resume-item-header">
               <h4>LORD BUDDHA HIGHER SECONDARY SCHOOL</h4>
-              <span className="resume-date">Biratnagar, Nepal</span>
+              <span className="resume-date">2019 – 2021</span>
             </div>
             <div className="resume-item-subheader">
-              <span className="resume-degree">National Examination Board +2, Science, 2021</span>
-              <span className="resume-date">Class 12 Score: 3.19 GPA</span>
-            </div>
-          </div>
-
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>CORBAN ENGLISH SCHOOL</h4>
+              <span className="resume-degree">Higher Secondary Education, Science</span>
               <span className="resume-date">Biratnagar, Nepal</span>
-            </div>
-            <div className="resume-item-subheader">
-              <span className="resume-degree">Secondary Education Exam (SEE / SLC), 2019</span>
-              <span className="resume-date">Aggregate Score: 3.30 GPA</span>
             </div>
           </div>
         </section>
 
         <section className="resume-section">
-          <h3 className="section-title">Technical Skills & Core Competencies</h3>
+          <h3 className="section-title">Skills &amp; Competencies</h3>
           <ul className="skills-list">
-            <li><strong>Languages & Frameworks:</strong> Python, JavaScript (ES6+), React.js, Node.js, Express.js, FastAPI, SQL, Tailwind CSS.</li>
-            <li><strong>Data & Cloud Infrastructure:</strong> Relational Databases (SQL, MongoDB), Vector DBs, System Automation, CMS (WordPress).</li>
-            <li><strong>Specialized Domains:</strong> Advanced Data Pipelines, Speech Processing, Machine Learning, Information Retrieval (RAG).</li>
-            <li><strong>Core Methodologies:</strong> Full-stack platform mapping, cross-functional leadership, structured technical documentation.</li>
+            <li><strong>Support &amp; Implementation:</strong> Client onboarding &amp; training, technical troubleshooting, incident management, workflow automation.</li>
+            <li><strong>Tools &amp; Platforms:</strong> MS Office (Word, Excel, PowerPoint), Google Workspace, web &amp; mobile app deployment.</li>
+            <li><strong>Core Competencies:</strong> Problem-solving, cross-team coordination, professional communication, presentation skills.</li>
+            <li><strong>Software Engineering:</strong> Python, SQL, JavaScript/TypeScript, React.js, Node.js, databases.</li>
           </ul>
         </section>
 
         <section className="resume-section">
-          <h3 className="section-title">Professional Experience & Leadership</h3>
-          
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Google Gemini Student Ambassador</h4>
-              <span className="resume-date">2025–2026 | IOE Purwanchal Campus</span>
-            </div>
-            <p className="resume-details">
-              Acted as the primary community touchpoint bridging complex digital technologies with the campus student base. Spearheaded large-scale technical bootcamps, mentored junior development cohorts, and delivered presentations on artificial intelligence frameworks, cloud configurations, and technical solution building.
-            </p>
-          </div>
-
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Frontend Developer & Technical Consultant</h4>
-              <span className="resume-date">2022–Present | Remote / Freelance</span>
-            </div>
-            <p className="resume-details">
-              Engineered and deployed over 10 fully responsive, production-ready web platforms using modern React.js architectures and content engines. Transformed complex UI/UX drafts into modular, high-speed frontend blocks, maintaining full back-end API integration and absolute code stability.
-            </p>
-          </div>
-        </section>
-
-        <section className="resume-section">
-          <h3 className="section-title">Research & Publications Tracking</h3>
-          
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Data Pipeline Architecture for Machine Learning Systems</h4>
-              <span className="resume-date">Ongoing</span>
-            </div>
-            <p className="resume-details">
-              Conducting engineering research targeting the design of modular pipeline architectures optimized for heavy machine learning model training flows. Investigating methodologies for automated file ETL execution, data structural compression, and removing pipeline processing bottlenecks.
-            </p>
-          </div>
-        </section>
-
-        <section className="resume-section">
-          <h3 className="section-title">Technical Engineering AI Systems Portfolio</h3>
-          
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>AI-Powered Visual Search Platform (e-Pasal)</h4>
-              <span className="resume-date">2025–2026</span>
-            </div>
-            <p className="resume-details">
-              Processed and indexed an exhaustive big-data cluster exceeding 100,000 images, fine-tuning deep feature embeddings utilizing Vision Transformer (ViT) designs. Built out high-performance FastAPI server lines for real-time visual product lookup and cross-platform stock SKU matching.
-            </p>
-          </div>
-
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Multilingual RAG Question Answering System</h4>
-              <span className="resume-date">2025</span>
-            </div>
-            <p className="resume-details">
-              Constructed a Retrieval-Augmented Generation (RAG) informational layout engineered for regional document querying supporting localized Nepali and Hindi languages. Integrated vectorized embedding lookups alongside neural transformers to secure real-time contextual question resolutions.
-            </p>
-          </div>
-
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Stutter Detection System for Regional Languages</h4>
-              <span className="resume-date">2024</span>
-            </div>
-            <p className="resume-details">
-              Designed complex speech preprocessing matrices and architectural feature selection modules to evaluate and dissect unique phonetic patterns in South Asian speech. Configured neural classification parameters to dynamically audit audio signal integrity.
-            </p>
-          </div>
-
-          <div className="resume-item">
-            <div className="resume-item-header">
-              <h4>Scalable E-Commerce & Admin Dashboard Engine</h4>
-              <span className="resume-date">2023</span>
-            </div>
-            <p className="resume-details">
-              Designed a fully comprehensive software commerce framework utilizing full-stack JS logic, complete with protected user authentication, product logs, cart calculations, and a complete administrative command dashboard. Optimized schema indexes to secure sub-second response limits.
-            </p>
-          </div>
-        </section>
-
-        <section className="resume-section">
-          <h3 className="section-title">Academic Conferences & Professional Attributes</h3>
+          <h3 className="section-title">Languages</h3>
           <ul className="skills-list">
-            <li><strong>Conferences & Exposure:</strong> Attended the <em>International Conference on Recent Trends in Artificial Intelligence (ICRTAI)</em>, Birtamode, 2025, tracking developments in scalable cloud infrastructure and localized transformer networks.</li>
-            <li><strong>System Optimization Focus:</strong> Exceptionally precise troubleshooting approach natively suited for code refactoring, database load distribution, system testing, and logic debugging.</li>
-            <li><strong>Cross-Functional Communication:</strong> Proven interpersonal, collaboration, and translation abilities honed through technical freelance consulting and elite global student leadership positions.</li>
+            <li><strong>English:</strong> Fluent (professional communication).</li>
+            <li><strong>Nepali:</strong> Native.</li>
+            <li><strong>Hindi:</strong> Fluent.</li>
           </ul>
         </section>
-        
+
         <div className="resume-footer">
           <a href="#/" className="back-btn">← Back to Portfolio</a>
           <div className="resume-actions">

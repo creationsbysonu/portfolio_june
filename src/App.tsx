@@ -98,25 +98,48 @@ const stats = [
 
 const capabilities = [
   'Python',
-  'JavaScript (ES6+)',
+  'JavaScript / TypeScript',
   'React.js / React Native',
   'Node.js / Express',
   'FastAPI / Flask',
+  'PHP',
+  'SQL / MySQL / MongoDB',
   'Transformers',
   'NLP & RAG Systems',
-  'MongoDB / MySQL',
+  'Implementation & Support',
 ]
 
 const experiences = [
   {
-    title: 'Full Stack Engineer (Freelance)',
-    period: 'Jul 2022 – Dec 2024',
-    description: 'Developed >10 responsive web applications for e-commerce, education, and professional services using the MERN stack.',
+    title: 'IT Lead & Computer Science Instructor',
+    org: 'St. Joseph School · Biratnagar, Nepal',
+    period: 'Mar 2025 – Mar 2026',
+    description: 'Directed IT infrastructure and digital platform operations for a school of 1,500+ students, training and supporting 70–75 staff members on new web-based tools.',
+    points: [
+      'Resolved day-to-day operational and technical queries for staff and faculty.',
+      'Implemented automated reporting workflows, saving 10+ hours of manual work per week.',
+      'Maintained digital asset trackers and databases, with summary reporting in Excel, Word and Google Slides.',
+    ],
   },
   {
-    title: 'Computer Teacher & IT Lead',
-    period: 'Mar 2025 – Mar 2026',
-    description: 'Led IT initiatives and taught computer science curriculum at St. Joseph School Biratnagar.',
+    title: 'Full Stack Engineer (Web Applications)',
+    org: 'Freelance · Remote',
+    period: '2022 – 2024',
+    description: 'Delivered end-to-end implementation for 10+ web-based client applications, from requirements through launch and post-launch support.',
+    points: [
+      'Coordinated closely with clients so workflows stayed smooth and uninterrupted.',
+      'Trained end-users to manage dashboards and extract their own business intelligence.',
+      'Owned documentation and communication across each project lifecycle.',
+    ],
+  },
+  {
+    title: 'MERN Stack Developer Intern',
+    org: 'Digital Pathshala · Remote, Nepal',
+    period: 'Jun 2025 – Aug 2025',
+    description: 'Supported the implementation, testing and troubleshooting of a large educational platform built on the MERN stack.',
+    points: [
+      'Worked with cross-functional teams to fix technical bugs and optimise knowledge-management workflows.',
+    ],
   },
 ]
 
@@ -125,6 +148,16 @@ const achievements = [
     quote: 'Selected for the Google Student Ambassador Program 2026. I value innovation, leadership, and continuous learning.',
     name: 'Google Gemini Student Ambassador ’26',
     title: 'Leadership & Community',
+  },
+  {
+    quote: 'Trained in scalable analytics practices, problem-solving, and efficient data architecture alongside mentors and a national cohort.',
+    name: 'EXCESS Data Fellowship · Cohort 3',
+    title: 'Data Fellow',
+  },
+  {
+    quote: 'Collaborated with teams on testing applied machine learning tools and technical integrations.',
+    name: 'Fuse AI Nepal',
+    title: 'AI Fellow',
   },
   {
     quote: 'Researching and designing scalable architectural patterns—analogous to MVC in software engineering—to streamline data pipelines and model training workflows in machine learning.',
@@ -136,8 +169,18 @@ const achievements = [
 const education = [
   {
     title: 'Bachelor of Engineering in Computer Engineering',
-    readTime: 'Tribhuvan University, IOE Purwanchal Campus · Graduated 2026',
+    readTime: 'Tribhuvan University, IOE Purwanchal Campus · 2022 – 2026 · First Division (69.74%)',
     tag: 'Degree',
+  },
+  {
+    title: 'Registered Computer Engineer',
+    readTime: 'Nepal Engineering Council · Reg. No. 102745',
+    tag: 'Licensure',
+  },
+  {
+    title: 'Data Engineer Certification',
+    readTime: 'DataCamp',
+    tag: 'Certification',
   },
   {
     title: 'Higher Secondary Education (Science)',
@@ -147,6 +190,8 @@ const education = [
 ]
 
 const contactLinks = [
+  { label: 'Email', href: 'mailto:studybysonugupta@gmail.com' },
+  { label: 'Website', href: 'https://guptasonu.com.np' },
   { label: 'Instagram', href: 'https://instagram.com/___gupta___sonu' },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sonu-gupta-681329340/' },
   { label: 'GitHub', href: 'https://github.com/creationsbysonu' },
@@ -715,14 +760,15 @@ function App() {
             <aside className="hero-aside">
               <p className="mono-label">AI/ML Engineer</p>
               <p className="mono-label">Full Stack Developer</p>
-              <p className="mono-label" style={{ marginTop: '8px' }}>Google Gemini Student Ambassador '26</p>
+              <p className="mono-label" style={{ marginTop: '8px' }}>IT Analyst · Implementation &amp; Support</p>
               <p className="hero-meta">
-                Qualified Computer Engineer<br />
+                NEC Registered Computer Engineer (Reg. 102745)<br />
                 Tribhuvan University, IOE Purwanchal Campus<br />
+                Kathmandu, Nepal
               </p>
               <div className="hero-divider" />
               <p className="hero-meta">
-                Email / GitHub / LinkedIn ready
+                Google Gemini Student Ambassador ’26
               </p>
 
               <div style={{ marginTop: 'auto', paddingBottom: '20px', display: 'flex', justifyContent: 'center', width: '100%' }}>
@@ -872,6 +918,9 @@ function App() {
               <p>
                 I enjoy turning research ideas into practical products that create real-world impact. Selected for the Google Gemini Student Ambassador Program 2026, I value innovation, leadership, and continuous learning. Currently, I’m focused on advancing my expertise in AI, SaaS development, and emerging technologies, with aspirations to contribute to world-class technology companies. I believe technology is most powerful when it empowers people—and that’s the kind of future I strive to build. Open to collaborations, research opportunities, and innovative projects.
               </p>
+              <p>
+                My day-to-day work is implementation and support: deploying web and mobile applications, onboarding and training end-users, and untangling live operational issues across teams. I am a Nepal Engineering Council registered Computer Engineer (Reg. No. 102745), a DataCamp certified Data Engineer, and a Data Fellow with the EXCESS Data Fellowship (Cohort 3) and AI Fellow with Fuse AI Nepal.
+              </p>
             </div>
             <div>
               <h3>Technical Skills</h3>
@@ -894,7 +943,13 @@ function App() {
               <article key={exp.title} className="service-card">
                 <p className="mono-label">{exp.period}</p>
                 <h3>{exp.title}</h3>
+                <p className="experience-org">{exp.org}</p>
                 <p>{exp.description}</p>
+                <ul className="experience-points">
+                  {exp.points.map((point) => (
+                    <li key={point}>{point}</li>
+                  ))}
+                </ul>
               </article>
             ))}
           </div>
@@ -974,6 +1029,10 @@ function App() {
                   icon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>;
                 } else if (link.label === 'LinkedIn') {
                   icon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>;
+                } else if (link.label === 'Email') {
+                  icon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M4 4h16v16H4z" opacity="0"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="m22 6-10 7L2 6"></path></svg>;
+                } else if (link.label === 'Website') {
+                  icon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>;
                 } else if (link.label === 'GitHub') {
                   icon = <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>;
                 }
@@ -991,7 +1050,7 @@ function App() {
                 )
               })}
             </div>
-            <a className="cta-button" href="mailto:sonugupta.ioepc.edu.np@gmail.com">
+            <a className="cta-button" href="mailto:studybysonugupta@gmail.com">
               Send an email
             </a>
           </div>

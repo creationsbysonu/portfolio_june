@@ -420,6 +420,7 @@
 .testimonial-card,
 .article-card,
 .contact-card {
+  margin: 0;
   border: 1px solid var(--border);
   background: rgba(255, 255, 255, 0.68);
   border-radius: 22px;
@@ -887,12 +888,32 @@
   grid-template-columns: repeat(12, minmax(0, 1fr));
 }
 
-.service-card:nth-child(1) {
-  grid-column: span 6;
+.service-card:nth-child(1),
+.service-card:nth-child(2),
+.service-card:nth-child(3) {
+  grid-column: span 4;
 }
 
-.service-card:nth-child(2) {
-  grid-column: span 6;
+.experience-org {
+  margin: 6px 0 0;
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  opacity: 0.68;
+}
+
+.experience-points {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 12px 0 0;
+  padding-left: 1.05rem;
+  font-size: 0.94rem;
+  line-height: 1.5;
+  color: var(--text);
+}
+
+.experience-points li::marker {
+  color: rgba(20, 20, 20, 0.35);
 }
 
 .testimonial-card:nth-child(1) {
@@ -903,11 +924,18 @@
   grid-column: span 5;
 }
 
-.article-card:nth-child(1) {
-  grid-column: span 6;
+.testimonial-card:nth-child(3) {
+  grid-column: span 5;
 }
 
-.article-card:nth-child(2) {
+.testimonial-card:nth-child(4) {
+  grid-column: span 7;
+}
+
+.article-card:nth-child(1),
+.article-card:nth-child(2),
+.article-card:nth-child(3),
+.article-card:nth-child(4) {
   grid-column: span 6;
 }
 
@@ -1069,14 +1097,10 @@
     grid-template-columns: 1fr;
   }
 
-  .project-card,
-  .service-card,
-  .testimonial-card,
-  .article-card {
-    grid-column: auto;
-  }
-
-  .project-grid .project-card {
+  .project-grid .project-card,
+  .service-grid .service-card,
+  .testimonial-grid .testimonial-card,
+  .article-grid .article-card {
     grid-column: auto;
   }
 
