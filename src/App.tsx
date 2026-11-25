@@ -13,6 +13,39 @@ const navItems: Array<{ label: string; href: `#${SectionId}` }> = [
   { label: 'Contact', href: '#contact' },
 ]
 
+const readyProjects = [
+  {
+    title: 'Bajeko Chiya Pasal — Nepali Music Radio',
+    description: 'A Nepali music radio platform streaming 300+ timeless songs across ten themed worlds — tea shop classics, old Radio Nepal, highway bus songs, lok dohori, rock and festival playlists. Every track plays through an official YouTube embed, no account needed.',
+    stack: ['React', 'TypeScript', 'YouTube API', 'Vite'],
+    year: 'LIVE · MUSIC',
+    outcome: '300+ songs across 10 themed stations.',
+    lottie: '/lottie-music.json',
+    demoLink: 'https://bajeko-chiya-pasal.vercel.app/',
+    githubLink: 'https://github.com/creationsbysonu/bajeko_chiya_pasal',
+  },
+  {
+    title: 'Pharmacia — Pharmacy Management System',
+    description: 'Multi-tenant pharmacy platform covering inventory, suppliers, purchases, customers, sales and reports, with a passphrase-gated Super Admin console for plans, trials, workspaces and upgrade requests.',
+    stack: ['React', 'Node.js', 'MySQL', 'Auth'],
+    year: 'LIVE · SAAS',
+    outcome: 'From stock intake to sales reports in one workspace.',
+    lottie: '/lottie-pharmacy.json',
+    demoLink: 'https://pharmacy-management-system-seven-sable.vercel.app/',
+    githubLink: 'https://github.com/creationsbysonu/pharmacy_management_system',
+  },
+  {
+    title: 'Mero Pasal — E-Commerce Nepal',
+    description: 'A complete marketplace inspired by Flipkart: category browsing for groceries, mobiles, fashion, electronics, home and more, coupon pricing, and a full product catalog experience.',
+    stack: ['React.js', 'Node.js', 'MongoDB'],
+    year: 'LIVE · COMMERCE',
+    outcome: 'Full storefront with coupon-based pricing.',
+    lottie: '/lottie-shopping.json',
+    demoLink: 'https://ecommerce-nepal-five.vercel.app/',
+    githubLink: 'https://github.com/creationsbysonu/ecommerce_nepal',
+  },
+]
+
 const featuredProjects = [
   {
     title: 'AI-Powered Visual Search Platform (e-Pasal)',
@@ -53,26 +86,6 @@ const featuredProjects = [
     lottie: 'https://cdn.lordicon.com/qhviklyi.json',
     demoLink: '#',
     githubLink: '#',
-  },
-  {
-    title: 'Scalable E-Commerce Platform',
-    description: 'Built a complete e-commerce platform with product catalog, shopping cart, authentication, admin dashboard, and review systems.',
-    stack: ['React.js', 'Node.js', 'MongoDB'],
-    year: 'Software',
-    outcome: 'Optimized database queries for fast performance.',
-    lottie: 'https://cdn.lordicon.com/cllunfud.json',
-    demoLink: '#',
-    githubLink: '#',
-  },
-  {
-    title: 'Pharmacy Management System (AUSADHI KINMEL)',
-    description: 'Web-based DBMS project to streamline pharmacy operations including inventory tracking, billing, supplier management, and user authentication.',
-    stack: ['PHP', 'MySQL', 'phpMyAdmin'],
-    year: 'Software',
-    outcome: 'Deepened understanding of database design and query optimization.',
-    lottie: '/lottie-pharmacy.json',
-    demoLink: '#',
-    githubLink: 'https://lnkd.in/dtHBkjaE',
   },
 ]
 
@@ -295,6 +308,54 @@ const galleryImages = [
     caption: 'Your Caption Here'
   }
 ]
+
+type Project = (typeof featuredProjects)[number]
+
+const isRealLink = (href: string) => Boolean(href) && href !== '#'
+
+function ProjectCard({ project, index }: { project: Project; index: number }) {
+  return (
+    <article className="project-card" style={{ animationDelay: `${index * 120}ms` }}>
+      <div className="project-visual" aria-hidden="true">
+        <span className="project-badge">{String(index + 1).padStart(2, '0')}</span>
+        {project.lottie && (
+          <div className="project-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+            <Lottie
+              loop
+              animationData={undefined}
+              path={project.lottie}
+              play
+              style={{ width: '80%', height: '80%', filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.1))' }}
+            />
+          </div>
+        )}
+        <div className="project-gradient" />
+        <div className="project-line" />
+      </div>
+      <div className="project-body">
+        <p className="mono-label">{project.year}</p>
+        <h3>{project.title}</h3>
+        <p>{project.description}</p>
+        <ul className="tag-list">
+          {project.stack.map((tech) => (
+            <li key={tech}>{tech}</li>
+          ))}
+        </ul>
+        <p className="project-outcome">{project.outcome}</p>
+        <div className="project-links">
+          {isRealLink(project.demoLink) ? (
+            <a href={project.demoLink} target="_blank" rel="noopener noreferrer" className="project-link primary">Try it out ↗</a>
+          ) : (
+            <span className="project-link project-link--soon">In development</span>
+          )}
+          {isRealLink(project.githubLink) && (
+            <a href={project.githubLink} target="_blank" rel="noopener noreferrer" className="project-link secondary">GitHub Repo ↗</a>
+          )}
+        </div>
+      </div>
+    </article>
+  )
+}
 
 function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -776,46 +837,25 @@ function App() {
             <p className="section-kicker">Technical projects</p>
             <h2>Selected work.</h2>
           </div>
-          <div className="project-grid">
-            {featuredProjects.map((project, index) => (
-              <article
-                key={project.title}
-                className="project-card"
-                style={{ animationDelay: `${index * 120}ms` }}
-              >
-                <div className="project-visual" aria-hidden="true">
-                  <span className="project-badge">0{index + 1}</span>
-                  {project.lottie && (
-                    <div className="project-image" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                      <Lottie
-                        loop
-                        animationData={undefined}
-                        path={project.lottie}
-                        play
-                        style={{ width: '80%', height: '80%', filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.1))' }}
-                      />
-                    </div>
-                  )}
-                  <div className="project-gradient" />
-                  <div className="project-line" />
-                </div>
-                <div className="project-body">
-                  <p className="mono-label">{project.year}</p>
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
-                  <ul className="tag-list">
-                    {project.stack.map((tech) => (
-                      <li key={tech}>{tech}</li>
-                    ))}
-                  </ul>
-                  <p className="project-outcome">{project.outcome}</p>
-                  <div className="project-links">
-                    <a href={project.demoLink} target="_blank" rel="noreferrer" className="project-link primary">Try it out ↗</a>
-                    <a href={project.githubLink} target="_blank" rel="noreferrer" className="project-link secondary">GitHub Repo ↗</a>
-                  </div>
-                </div>
-              </article>
-            ))}
+          <div className="project-group">
+            <p className="project-group-label">
+              <span className="status-dot" aria-hidden="true" />
+              Ready to explore
+            </p>
+            <div className="project-grid project-grid--ready">
+              {readyProjects.map((project, index) => (
+                <ProjectCard key={project.title} project={project} index={index} />
+              ))}
+            </div>
+          </div>
+
+          <div className="project-group">
+            <p className="project-group-label">Currently working on</p>
+            <div className="project-grid">
+              {featuredProjects.map((project, index) => (
+                <ProjectCard key={project.title} project={project} index={index} />
+              ))}
+            </div>
           </div>
         </section>
 
