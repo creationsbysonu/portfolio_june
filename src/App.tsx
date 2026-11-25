@@ -335,24 +335,9 @@ const SECONDARY_CARDS = [
   }
 ];
 
-const galleryImages = [
-  {
-    url: '',
-    caption: 'Your Caption Here'
-  },
-  {
-    url: '',
-    caption: 'Your Caption Here'
-  },
-  {
-    url: '',
-    caption: 'Your Caption Here'
-  },
-  {
-    url: '',
-    caption: 'Your Caption Here'
-  }
-]
+const galleryImages: { url: string; caption: string }[] = []
+
+const availableGalleryImages = galleryImages.filter((image) => Boolean(image.url))
 
 type Project = (typeof featuredProjects)[number]
 
@@ -995,21 +980,20 @@ function App() {
           <div className="section-title-line"></div>
         </h2>
         <div className="gallery-grid">
-          {galleryImages.map((image, i) => (
-            <div className="gallery-item" key={i}>
-              {image.url ? (
-                <img src={image.url} alt={image.caption} className="gallery-img" />
-              ) : (
-                <div className="gallery-placeholder">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="placeholder-icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
-                  <span>Add Image</span>
-                </div>
-              )}
-              <div className="gallery-overlay">
-                <p className="gallery-caption">{image.caption}</p>
-              </div>
+          {availableGalleryImages.length > 0 ? (
+            availableGalleryImages.map((image, i) => (
+              <figure className="gallery-item" key={i}>
+                <img src={image.url} alt={image.caption} className="gallery-img" loading="lazy" />
+                {image.caption && <figcaption className="gallery-caption">{image.caption}</figcaption>}
+              </figure>
+            ))
+          ) : (
+            <div className="gallery-empty">
+              <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="gallery-empty__icon"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+              <p className="gallery-empty__title">Coming soon</p>
+              <p className="gallery-empty__text">Photos from events, demos and talks will appear here.</p>
             </div>
-          ))}
+          )}
         </div>
       </section>
 
