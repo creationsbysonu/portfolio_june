@@ -313,3 +313,29 @@
     flex-direction: column;
   }
 }
+
+.resume-doc-links {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.resume-doc-links a:first-child {
+  display: inline-flex;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #151515;
+  color: #f6f2ea;
+  font-weight: 600;
+}
+
+.resume-doc-links a:last-child {
+  color: var(--text);
+  border-bottom: 1px solid rgba(20, 20, 20, 0.35);
+}
+
+.resume-doc-links a:hover {
+  opacity: 0.72;
+}

@@ -1,15 +1,17 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Lottie from 'react-lottie-player'
+import RecruiterGate from './RecruiterGate'
 
 import './App.css'
 
-type SectionId = 'home' | 'work' | 'about' | 'experience' | 'contact'
+type SectionId = 'home' | 'work' | 'about' | 'experience' | 'documents' | 'contact'
 
 const navItems: Array<{ label: string; href: `#${SectionId}` }> = [
   { label: 'Work', href: '#work' },
   { label: 'About', href: '#about' },
   { label: 'Experience', href: '#experience' },
+  { label: 'Documents', href: '#documents' },
   { label: 'Contact', href: '#contact' },
 ]
 
@@ -186,6 +188,23 @@ const education = [
     title: 'Higher Secondary Education (Science)',
     readTime: 'Lord Buddha Higher Secondary School, Biratnagar · 2019 – 2021',
     tag: '+2 Science',
+  },
+]
+
+const documents = [
+  {
+    kind: 'Research paper',
+    title: 'PatchLake — Patch-Columnar Lakehouse Format',
+    detail: 'A native columnar format and zero-copy pushdown engine for low-latency Vision Transformer ingestion: patch tensors co-located with metadata on Apache Arrow IPC, predicate pushdown through embedded DuckDB. Evaluated on COCO 2017.',
+    meta: 'Single author · 4.45× ingestion throughput, 75.6% smaller tensor storage (as reported)',
+    file: '/pdf_files/patchlake-paper.pdf',
+  },
+  {
+    kind: 'Major project report',
+    title: 'Image-Based Product Retrieval for E-Commerce Using ViT',
+    detail: 'Final-year engineering project at IOE Purwanchal Campus: a Vision Transformer fine-tuned on 100,000+ product images for content-based image retrieval. Team of four.',
+    meta: 'Tribhuvan University · March 2026',
+    file: '/pdf_files/major-project-report-vit-product-retrieval.pdf',
   },
 ]
 
@@ -394,6 +413,7 @@ function App() {
   const [hasCompletedIntro, setHasCompletedIntro] = useState(false)
   const [focusIndex, setFocusIndex] = useState(0)
   const [secondaryIndex, setSecondaryIndex] = useState(0)
+  const [gateOpen, setGateOpen] = useState(false)
   const reducedMotion = useReducedMotion()
   const { scrollY } = useScroll()
   const papyrusHeight = useTransform(scrollY, [0, 200, 350, 550], [0, 360, 360, 0])
@@ -405,6 +425,7 @@ function App() {
   const servicesReveal = useInView<HTMLElement>(0.2)
   const testimonialsReveal = useInView<HTMLElement>(0.2)
   const articlesReveal = useInView<HTMLElement>(0.2)
+  const documentsReveal = useInView<HTMLElement>(0.2)
   const contactReveal = useInView<HTMLElement>(0.2)
   const heroStats = useCounter(10, heroReveal.isVisible, reducedMotion)
   const stackCount = useCounter(6, heroReveal.isVisible, reducedMotion)
@@ -439,6 +460,29 @@ function App() {
       clearInterval(secondaryTimer)
     }
   }, [])
+
+  useEffect(() => {
+    if (!isHeaderMode) {
+      return
+    }
+
+    let seen = false
+
+    try {
+      seen = window.sessionStorage.getItem('recruiter-gate-seen') === '1'
+      window.sessionStorage.setItem('recruiter-gate-seen', '1')
+    } catch {
+      // Private-mode browsers can block sessionStorage; the gate still works.
+    }
+
+    if (seen) {
+      return
+    }
+
+    const timer = window.setTimeout(() => setGateOpen(true), 800)
+
+    return () => window.clearTimeout(timer)
+  }, [isHeaderMode])
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>('[data-section]')
@@ -719,6 +763,11 @@ function App() {
             <li>
               <a href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
             </li>
+            <li>
+              <button type="button" className="nav-recruiter" onClick={() => setGateOpen(true)}>
+                Recruiter
+              </button>
+            </li>
           </ul>
         </nav>
 
@@ -736,6 +785,16 @@ function App() {
             </a>
           ))}
           <a href="#/resume" target="_blank" rel="noopener noreferrer">Resume</a>
+          <button
+            type="button"
+            className="mobile-menu-recruiter"
+            onClick={() => {
+              setMobileMenuOpen(false);
+              setGateOpen(true);
+            }}
+          >
+            Recruiter access
+          </button>
         </div>
       </header>
 
@@ -974,6 +1033,34 @@ function App() {
           </div>
         </section>
 
+        <section id="documents" className="section-block section-block--cinematic" data-section="documents" ref={documentsReveal.ref}>
+          <div className={`section-heading section-heading--split ${documentsReveal.isVisible ? 'is-visible' : ''}`}>
+            <p className="section-kicker">Documents</p>
+            <h2>Reports &amp; research.</h2>
+          </div>
+          <p className="documents-intro">
+            The full write-ups behind the AI/ML work — readable in the browser or downloadable as PDF.
+          </p>
+          <div className="document-grid">
+            {documents.map((doc) => (
+              <article key={doc.file} className="document-card">
+                <p className="mono-label">{doc.kind}</p>
+                <h3>{doc.title}</h3>
+                <p>{doc.detail}</p>
+                <p className="document-meta">{doc.meta}</p>
+                <div className="document-actions">
+                  <a className="project-link primary" href={doc.file} target="_blank" rel="noopener noreferrer">
+                    Read PDF ↗
+                  </a>
+                  <a className="text-link" href={doc.file} download>
+                    Download
+                  </a>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
       <section id="gallery" className="gallery-section fade-in">
         <h2 className="section-title">
           Gallery
@@ -1043,11 +1130,16 @@ function App() {
       </main>
 
       <footer className="site-footer">
-        <p>Designed & developed by Sonu Kumar Gupta · ©2026</p>
+        <p>Designed &amp; developed by Sonu Kumar Gupta · ©2026</p>
+        <button type="button" className="footer-recruiter" onClick={() => setGateOpen(true)}>
+          Recruiter access
+        </button>
         <a href="#home" className="text-link" onClick={(e) => scrollToSection(e, 'home')}>
           Back to top
         </a>
       </footer>
+
+      <RecruiterGate open={gateOpen} onClose={() => setGateOpen(false)} />
     </div>
   )
 }

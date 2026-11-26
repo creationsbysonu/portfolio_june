@@ -208,6 +208,46 @@ export default function ResumePage() {
         </section>
 
         <section className="resume-section">
+          <h3 className="section-title">Documents &amp; Research</h3>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>PATCHLAKE — PATCH-COLUMNAR LAKEHOUSE FORMAT</h4>
+              <span className="resume-date">Research paper</span>
+            </div>
+            <div className="resume-item-subheader">
+              <span className="resume-degree">Single author · Apache Arrow IPC, DuckDB pushdown</span>
+            </div>
+            <p className="resume-details">
+              Native columnar format and zero-copy pushdown engine for low-latency Vision Transformer
+              ingestion — 4.45× throughput and 75.6% smaller tensor storage on COCO 2017, as reported.
+            </p>
+            <div className="resume-doc-links">
+              <a href="/pdf_files/patchlake-paper.pdf" target="_blank" rel="noreferrer">Read PDF ↗</a>
+              <a href="/pdf_files/patchlake-paper.pdf" download>Download</a>
+            </div>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
+              <h4>IMAGE-BASED PRODUCT RETRIEVAL USING ViT</h4>
+              <span className="resume-date">Major project report</span>
+            </div>
+            <div className="resume-item-subheader">
+              <span className="resume-degree">Team of four · IOE Purwanchal Campus</span>
+            </div>
+            <p className="resume-details">
+              Final-year engineering project: a Vision Transformer fine-tuned on 100,000+ product images for
+              content-based image retrieval in e-commerce. Full report, March 2026.
+            </p>
+            <div className="resume-doc-links">
+              <a href="/pdf_files/major-project-report-vit-product-retrieval.pdf" target="_blank" rel="noreferrer">Read PDF ↗</a>
+              <a href="/pdf_files/major-project-report-vit-product-retrieval.pdf" download>Download</a>
+            </div>
+          </div>
+        </section>
+
+        <section className="resume-section">
           <h3 className="section-title">Languages</h3>
           <ul className="skills-list">
             <li><strong>English:</strong> Fluent (professional communication).</li>
