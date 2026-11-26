@@ -462,10 +462,6 @@ function App() {
   }, [])
 
   useEffect(() => {
-    if (!isHeaderMode) {
-      return
-    }
-
     let seen = false
 
     try {
@@ -479,10 +475,10 @@ function App() {
       return
     }
 
-    const timer = window.setTimeout(() => setGateOpen(true), 800)
+    const timer = window.setTimeout(() => setGateOpen(true), 350)
 
     return () => window.clearTimeout(timer)
-  }, [isHeaderMode])
+  }, [])
 
   useEffect(() => {
     const sections = document.querySelectorAll<HTMLElement>('[data-section]')
@@ -765,6 +761,7 @@ function App() {
             </li>
             <li>
               <button type="button" className="nav-recruiter" onClick={() => setGateOpen(true)}>
+                <span className="nav-recruiter__dot" aria-hidden="true" />
                 Recruiter
               </button>
             </li>
@@ -1138,6 +1135,14 @@ function App() {
           Back to top
         </a>
       </footer>
+
+      <button type="button" className="recruiter-fab" onClick={() => setGateOpen(true)}>
+        <span className="recruiter-fab__dot" aria-hidden="true" />
+        <span className="recruiter-fab__text">
+          <strong>Recruiter?</strong>
+          <span>Enter application number</span>
+        </span>
+      </button>
 
       <RecruiterGate open={gateOpen} onClose={() => setGateOpen(false)} />
     </div>

@@ -86,8 +86,11 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
               ×
             </button>
 
-            <p className="mono-label">For interview panels</p>
-            <h2 id="recruiter-gate-title">Recruiter access</h2>
+            <p className="recruiter-gate__eyebrow">
+              <span className="recruiter-gate__dot" aria-hidden="true" />
+              Recruiters start here
+            </p>
+            <h2 id="recruiter-gate-title">Enter your application number</h2>
             <p className="recruiter-gate__copy">
               If you are a recruiter, enter the application number from your interview invite. It opens a
               dedicated brief for that role — the documents I attached, the matching work, and the short
