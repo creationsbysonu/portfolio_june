@@ -106,6 +106,22 @@ export default function ResumePage() {
 
           <div className="resume-item">
             <div className="resume-item-header">
+              <h4>Multilingual RAG Question Answering System</h4>
+              <span className="resume-date">2026</span>
+            </div>
+            <p className="resume-details">
+              Built and shipped a Retrieval Augmented Generation pipeline for Hindi and Nepali: documents are
+              embedded into a vector index, relevant passages retrieved, and grounded answers generated.{' '}
+              <strong>Tech:</strong> Python, Transformers, Vector DB.
+            </p>
+            <div className="resume-doc-links">
+              <a href="https://rag-expansion.vercel.app/" target="_blank" rel="noreferrer">Live demo ↗</a>
+              <a href="https://github.com/creationsbysonu/rag_expan" target="_blank" rel="noreferrer">GitHub ↗</a>
+            </div>
+          </div>
+
+          <div className="resume-item">
+            <div className="resume-item-header">
               <h4>AI-Powered Visual Search Platform (e-Pasal)</h4>
               <span className="resume-date">2025 – 2026</span>
             </div>

@@ -97,6 +97,35 @@
   background: rgba(20, 20, 20, 0.06);
 }
 
+.recruiter-gate__window {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 7px 14px;
+  border-radius: 999px;
+  background: rgba(176, 141, 88, 0.12);
+  color: #6e5f4e;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.recruiter-gate__window-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #4f7a52;
+}
+
+.recruiter-gate__open-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 20px;
+}
+
 .recruiter-gate__form {
   display: flex;
   gap: 10px;

@@ -90,7 +90,7 @@ export const applications: Record<string, ApplicationProfile> = {
       {
         title: 'Applied NLP and speech',
         detail:
-          'Multilingual RAG question answering for Hindi and Nepali, and a stutter detection system for regional-language speech.',
+          'Multilingual RAG question answering for Hindi and Nepali — now shipped and live — plus a stutter detection system for regional-language speech.',
       },
     ],
     documents: [
@@ -112,6 +112,14 @@ export const applications: Record<string, ApplicationProfile> = {
       },
     ],
     work: [
+      {
+        title: 'Multilingual RAG QA — Hindi & Nepali',
+        detail:
+          'Retrieval augmented question answering over a vector index, shipped and live: retrieved passages are grounded into the generated answer so regional-language users get sourced responses.',
+        tags: ['Python', 'Transformers', 'Vector DB'],
+        href: 'https://rag-expansion.vercel.app/',
+        hrefLabel: 'Open live system ↗',
+      },
       {
         title: 'Pharmacia — Pharmacy Management System',
         detail:

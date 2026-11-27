@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Lottie from 'react-lottie-player'
 import RecruiterGate from './RecruiterGate'
+import { isBriefOpenAccess } from './access'
 
 import './App.css'
 
@@ -46,6 +47,16 @@ const readyProjects = [
     demoLink: 'https://ecommerce-nepal-five.vercel.app/',
     githubLink: 'https://github.com/creationsbysonu/ecommerce_nepal',
   },
+  {
+    title: 'Multilingual RAG Question Answering System',
+    description: 'A Retrieval Augmented Generation pipeline answering questions in Hindi and Nepali. Retrieved passages from a vector index are grounded into a generated answer, so regional-language users get sourced responses instead of guesses.',
+    stack: ['Python', 'Transformers', 'Vector DB', 'NLP'],
+    year: 'LIVE · NLP',
+    outcome: 'Grounded answers in Hindi and Nepali.',
+    lottie: 'https://cdn.lordicon.com/zpxybbhl.json',
+    demoLink: 'https://rag-expansion.vercel.app/',
+    githubLink: 'https://github.com/creationsbysonu/rag_expan',
+  },
 ]
 
 const featuredProjects = [
@@ -56,16 +67,6 @@ const featuredProjects = [
     year: 'AI / ML',
     outcome: 'Real-time search with accurate SKU mapping.',
     lottie: 'https://cdn.lordicon.com/msoeawqm.json',
-    demoLink: '#',
-    githubLink: '#',
-  },
-  {
-    title: 'Multilingual RAG Question Answering System',
-    description: 'Designed a Retrieval Augmented Generation (RAG) pipeline supporting Hindi and Nepali languages. Implemented vector search to retrieve relevant documents before generating contextual answers.',
-    stack: ['Python', 'Transformers', 'Vector DB', 'NLP'],
-    year: 'AI / ML',
-    outcome: 'Improved accessibility for regional users.',
-    lottie: 'https://cdn.lordicon.com/zpxybbhl.json',
     demoLink: '#',
     githubLink: '#',
   },
@@ -414,6 +415,7 @@ function App() {
   const [focusIndex, setFocusIndex] = useState(0)
   const [secondaryIndex, setSecondaryIndex] = useState(0)
   const [gateOpen, setGateOpen] = useState(false)
+  const recruiterOpenAccess = isBriefOpenAccess()
   const reducedMotion = useReducedMotion()
   const { scrollY } = useScroll()
   const papyrusHeight = useTransform(scrollY, [0, 200, 350, 550], [0, 360, 360, 0])
@@ -1140,7 +1142,7 @@ function App() {
         <span className="recruiter-fab__dot" aria-hidden="true" />
         <span className="recruiter-fab__text">
           <strong>Recruiter?</strong>
-          <span>Enter application number</span>
+          <span>{recruiterOpenAccess ? 'Open the interview brief' : 'Enter application number'}</span>
         </span>
       </button>
 

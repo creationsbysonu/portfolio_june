@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { findApplication } from './applications'
+import { isBriefOpenAccess, openAccessEndsLabel } from './access'
 import './App.css'
 import './ApplicationPage.css'
 
@@ -157,7 +158,10 @@ export default function ApplicationPage() {
                   ))}
                 </div>
                 <p className="brief-panel-note">
-                  Brief for application {application.number} · unlisted — it only opens with this number.
+                  Brief for application {application.number} ·{' '}
+                  {isBriefOpenAccess()
+                    ? `open to anyone with this link until ${openAccessEndsLabel}.`
+                    : 'unlisted — it only opens with this number.'}
                 </p>
               </section>
             </aside>
