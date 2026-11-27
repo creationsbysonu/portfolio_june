@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sonu Kumar Gupta</title>
+    <script>
+      // GitHub Pages serves this file for any unknown path. The app routes on the hash,
+      // so move whatever was requested onto the hash and reload the real entry point.
+      // That keeps pasted links like /application/922497 working.
+      ;(function () {
+        var path = window.location.pathname.replace(/^\/+|\/+$/g, '')
+        var hash = window.location.hash.replace(/^#\/?/, '')
+        var route = [path, hash].filter(Boolean).join('/')
+        window.location.replace(window.location.origin + '/#' + (route ? '/' + route : '/'))
+      })()
+    </script>
+  </head>
+  <body>
+    <p>Redirecting to <a href="/">guptasonu.com.np</a>…</p>
+  </body>
+</html>

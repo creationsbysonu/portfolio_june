@@ -24,6 +24,7 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
   const inputRef = useRef<HTMLInputElement>(null)
 
   const openAccess = isBriefOpenAccess(now)
+  const openApplication = OPEN_ACCESS_BRIEF_NUMBER ? findApplication(OPEN_ACCESS_BRIEF_NUMBER) : undefined
 
   useEffect(() => {
     if (!open) {
@@ -120,9 +121,10 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
               <>
                 <h2 id="recruiter-gate-title">The interview brief is open.</h2>
                 <p className="recruiter-gate__copy">
-                  I promised the Mahalaxmi Bikas Bank panel that the work I showed them would be one click
-                  away. Until <strong>{openAccessEndsLabel}</strong> the brief opens directly — no application
-                  number needed. After that, the number from the interview invite unlocks it again.
+                  I promised the {openApplication?.company ?? 'interview'} panel that the work I showed them
+                  would be one click away. Until <strong>{openAccessEndsLabel}</strong> the brief opens directly
+                  — no application number needed. After that, the number from the interview invite unlocks it
+                  again.
                 </p>
                 <p className="recruiter-gate__window">
                   <span className="recruiter-gate__window-dot" aria-hidden="true" />

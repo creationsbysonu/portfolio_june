@@ -1,17 +1,38 @@
-// After the Mahalaxmi Bikas Bank interview the promised brief stays open to anyone
-// who clicks for a short window. Once the window closes, the application number
-// from the interview invite is required again.
-export const OPEN_ACCESS_ENDS_AT = new Date('2026-11-30T23:59:59+05:45').getTime()
-export const OPEN_ACCESS_BRIEF_NUMBER = '922497'
+// A brief can be published openly for a window by setting `openAccessUntil` on its
+// entry in applications.ts. The window comes straight from those entries, so opening
+// the next interview's brief is one field next to that brief — no dates in this file.
+// Once the window closes, the application number from the interview invite is required again.
+import { applications } from './applications'
+
+export type OpenBriefWindow = {
+  number: string
+  endsAt: number
+}
+
+const publishedWindows: OpenBriefWindow[] = Object.values(applications)
+  .flatMap((application) => {
+    const endsAt = application.openAccessUntil ? Date.parse(application.openAccessUntil) : Number.NaN
+    return Number.isFinite(endsAt) ? [{ number: application.number, endsAt }] : []
+  })
+  .sort((first, second) => second.endsAt - first.endsAt)
+
+export const OPEN_BRIEF_WINDOW: OpenBriefWindow | null = publishedWindows[0] ?? null
+export const OPEN_ACCESS_ENDS_AT = OPEN_BRIEF_WINDOW?.endsAt ?? 0
+export const OPEN_ACCESS_BRIEF_NUMBER = OPEN_BRIEF_WINDOW?.number ?? ''
 
 export const isBriefOpenAccess = (now = Date.now()) => now < OPEN_ACCESS_ENDS_AT
 
-export const openAccessEndsLabel = new Intl.DateTimeFormat('en-GB', {
-  day: 'numeric',
-  month: 'short',
-  year: 'numeric',
-  timeZone: 'Asia/Kathmandu',
-}).format(new Date(OPEN_ACCESS_ENDS_AT))
+export const isBriefPublished = (number: string, now = Date.now()) =>
+  number === OPEN_ACCESS_BRIEF_NUMBER && isBriefOpenAccess(now)
+
+export const openAccessEndsLabel = OPEN_BRIEF_WINDOW
+  ? new Intl.DateTimeFormat('en-GB', {
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric',
+      timeZone: 'Asia/Kathmandu',
+    }).format(new Date(OPEN_BRIEF_WINDOW.endsAt))
+  : ''
 
 export function formatTimeLeft(milliseconds: number) {
   if (milliseconds <= 0) {
