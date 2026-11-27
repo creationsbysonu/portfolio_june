@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { findApplication } from './applications'
-import { isBriefPublished, openAccessEndsLabel } from './access'
+import { isBriefPublished, openAccessEndsLabel, useOpenAccessClock } from './access'
 import './App.css'
 import './ApplicationPage.css'
 
@@ -13,7 +13,9 @@ const contactActions = [
 
 export default function ApplicationPage() {
   const { number = '' } = useParams()
+  const now = useOpenAccessClock()
   const application = findApplication(number)
+  const published = application ? isBriefPublished(application.number, now) : false
 
   useEffect(() => {
     document.title = application
@@ -65,7 +67,15 @@ export default function ApplicationPage() {
       ) : (
         <main className="brief-main">
           <section className="brief-hero">
-            <p className="mono-label">Recruiter brief · Application {application.number}</p>
+            <div className="brief-hero-top">
+              <p className="mono-label">Recruiter brief · Application {application.number}</p>
+              {published && (
+                <p className="brief-open-pill">
+                  <span className="brief-open-pill__dot" aria-hidden="true" />
+                  Open to anyone until {openAccessEndsLabel}
+                </p>
+              )}
+            </div>
             <div className="brief-hero-head">
               <div>
                 <h1>{application.role}</h1>
@@ -159,7 +169,7 @@ export default function ApplicationPage() {
                 </div>
                 <p className="brief-panel-note">
                   Brief for application {application.number} ·{' '}
-                  {isBriefPublished(application.number)
+                  {published
                     ? `open to anyone with this link until ${openAccessEndsLabel}.`
                     : 'unlisted — it only opens with this number.'}
                 </p>

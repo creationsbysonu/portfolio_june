@@ -8,7 +8,9 @@ import {
   formatTimeLeft,
   isBriefOpenAccess,
   openAccessEndsLabel,
+  useOpenAccessClock,
 } from './access'
+import { gateCopy } from './gateCopy'
 import './RecruiterGate.css'
 
 type RecruiterGateProps = {
@@ -20,7 +22,7 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
   const [showNumberForm, setShowNumberForm] = useState(false)
-  const [now, setNow] = useState(() => Date.now())
+  const now = useOpenAccessClock()
   const inputRef = useRef<HTMLInputElement>(null)
 
   const openAccess = isBriefOpenAccess(now)
@@ -40,13 +42,8 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
     }
 
     window.addEventListener('keydown', handleKey)
-    const ticker = window.setInterval(() => setNow(Date.now()), 30_000)
-    setNow(Date.now())
 
-    return () => {
-      window.removeEventListener('keydown', handleKey)
-      window.clearInterval(ticker)
-    }
+    return () => window.removeEventListener('keydown', handleKey)
   }, [open, onClose])
 
   useEffect(() => {
@@ -63,7 +60,7 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
     const application = findApplication(value)
 
     if (!application) {
-      setError('No brief is linked to that number yet. Check the number on your interview invite, or email me and I will send it directly.')
+      setError(gateCopy.number.error)
       return
     }
 
@@ -108,98 +105,96 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.25, ease: [0.22, 0.61, 0.36, 1] }}
       >
-            <button type="button" className="recruiter-gate__close" onClick={onClose} aria-label="Close">
-              ×
-            </button>
+        <button
+          type="button"
+          className="recruiter-gate__close"
+          onClick={onClose}
+          aria-label={gateCopy.closeLabel}
+        >
+          ×
+        </button>
 
-            <p className="recruiter-gate__eyebrow">
-              <span className="recruiter-gate__dot" aria-hidden="true" />
-              Recruiters start here
+        <p className="recruiter-gate__eyebrow">
+          <span className="recruiter-gate__dot" aria-hidden="true" />
+          {gateCopy.eyebrow}
+        </p>
+
+        {directAccess ? (
+          <>
+            <h2 id="recruiter-gate-title">{gateCopy.open.title}</h2>
+            <p className="recruiter-gate__copy">
+              {gateCopy.open.body(openApplication?.company ?? 'interview', openAccessEndsLabel)}
+            </p>
+            <p className="recruiter-gate__window">
+              <span className="recruiter-gate__window-dot" aria-hidden="true" />
+              {formatTimeLeft(OPEN_ACCESS_ENDS_AT - now)} {gateCopy.open.timeLeftSuffix}
             </p>
 
-            {directAccess ? (
-              <>
-                <h2 id="recruiter-gate-title">The interview brief is open.</h2>
-                <p className="recruiter-gate__copy">
-                  I promised the {openApplication?.company ?? 'interview'} panel that the work I showed them
-                  would be one click away. Until <strong>{openAccessEndsLabel}</strong> the brief opens directly
-                  — no application number needed. After that, the number from the interview invite unlocks it
-                  again.
-                </p>
-                <p className="recruiter-gate__window">
-                  <span className="recruiter-gate__window-dot" aria-hidden="true" />
-                  {formatTimeLeft(OPEN_ACCESS_ENDS_AT - now)} of open access
-                </p>
+            <div className="recruiter-gate__open-actions">
+              <a
+                className="cta-button"
+                href={briefHref(OPEN_ACCESS_BRIEF_NUMBER)}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={onClose}
+              >
+                {gateCopy.open.openBrief}
+              </a>
+            </div>
 
-                <div className="recruiter-gate__open-actions">
-                  <a
-                    className="cta-button"
-                    href={briefHref(OPEN_ACCESS_BRIEF_NUMBER)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={onClose}
-                  >
-                    Open the interview brief ↗
-                  </a>
-                </div>
+            <div className="recruiter-gate__footer">
+              <button
+                type="button"
+                className="text-link recruiter-gate__dismiss"
+                onClick={() => setShowNumberForm(true)}
+              >
+                {gateCopy.open.numberLink}
+              </button>
+              <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">
+                {gateCopy.open.resumeLink}
+              </a>
+            </div>
+          </>
+        ) : (
+          <>
+            <h2 id="recruiter-gate-title">{gateCopy.number.title}</h2>
+            <p className="recruiter-gate__copy">{gateCopy.number.body}</p>
 
-                <div className="recruiter-gate__footer">
-                  <button
-                    type="button"
-                    className="text-link recruiter-gate__dismiss"
-                    onClick={() => setShowNumberForm(true)}
-                  >
-                    I have an application number
-                  </button>
-                  <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">
-                    Resume
-                  </a>
-                </div>
-              </>
-            ) : (
-              <>
-                <h2 id="recruiter-gate-title">Enter your application number</h2>
-                <p className="recruiter-gate__copy">
-                  If you are a recruiter, enter the application number from your interview invite. It opens a
-                  dedicated brief for that role — the documents I attached, the matching work, and the short
-                  version of why I fit.
-                </p>
+            <form className="recruiter-gate__form" onSubmit={handleSubmit}>
+              <label className="sr-only" htmlFor="application-number">
+                Application number
+              </label>
+              <input
+                id="application-number"
+                ref={inputRef}
+                className="recruiter-gate__input"
+                type="text"
+                inputMode="numeric"
+                autoComplete="off"
+                placeholder={gateCopy.number.placeholder}
+                value={value}
+                onChange={(event) => {
+                  setValue(event.target.value.replace(/[^0-9]/g, '').slice(0, 12))
+                  setError('')
+                }}
+              />
+              <button type="submit" className="cta-button" disabled={!value}>
+                {gateCopy.number.submit}
+              </button>
+            </form>
 
-                <form className="recruiter-gate__form" onSubmit={handleSubmit}>
-                  <label className="sr-only" htmlFor="application-number">
-                    Application number
-                  </label>
-                  <input
-                    id="application-number"
-                    ref={inputRef}
-                    className="recruiter-gate__input"
-                    type="text"
-                    inputMode="numeric"
-                    autoComplete="off"
-                    placeholder="e.g. 922497"
-                    value={value}
-                    onChange={(event) => {
-                      setValue(event.target.value.replace(/[^0-9]/g, '').slice(0, 12))
-                      setError('')
-                    }}
-                  />
-                  <button type="submit" className="cta-button" disabled={!value}>
-                    Open my brief ↗
-                  </button>
-                </form>
+            {error && <p className="recruiter-gate__error">{error}</p>}
 
-                {error && <p className="recruiter-gate__error">{error}</p>}
-
-                <div className="recruiter-gate__footer">
-                  <button type="button" className="text-link recruiter-gate__dismiss" onClick={onClose}>
-                    Just browsing — show me the portfolio
-                  </button>
-                  <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">
-                    Resume
-                  </a>
-                </div>
-              </>
-            )}
+            <div className="recruiter-gate__footer">
+              <button type="button" className="text-link recruiter-gate__dismiss" onClick={onClose}>
+                {gateCopy.number.dismiss}
+              </button>
+              <a className="text-link" href="#/resume" target="_blank" rel="noopener noreferrer">
+                {gateCopy.number.resumeLink}
+              </a>
+            </div>
+          </>
+        )}
       </motion.div>
     </motion.div>
   )

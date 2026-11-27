@@ -2,6 +2,7 @@
 // entry in applications.ts. The window comes straight from those entries, so opening
 // the next interview's brief is one field next to that brief — no dates in this file.
 // Once the window closes, the application number from the interview invite is required again.
+import { useEffect, useState } from 'react'
 import { applications } from './applications'
 
 export type OpenBriefWindow = {
@@ -56,3 +57,26 @@ export function formatTimeLeft(milliseconds: number) {
 
 export const briefHref = (number: string) =>
   `${window.location.origin}${window.location.pathname}#/application/${number}`
+
+/**
+ * Re-renders on a timer while a public window exists, so a tab left open past the
+ * deadline drops back to number-only access without a rebuild or a refresh.
+ * When no brief is published there is nothing to watch, so no timer runs.
+ */
+export function useOpenAccessClock(intervalMs = 30_000) {
+  const [now, setNow] = useState(() => Date.now())
+
+  useEffect(() => {
+    if (!OPEN_BRIEF_WINDOW) {
+      return
+    }
+
+    const tick = () => setNow(Date.now())
+    tick()
+    const timer = window.setInterval(tick, intervalMs)
+
+    return () => window.clearInterval(timer)
+  }, [intervalMs])
+
+  return now
+}

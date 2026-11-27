@@ -2,7 +2,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import Lottie from 'react-lottie-player'
 import RecruiterGate from './RecruiterGate'
-import { isBriefOpenAccess } from './access'
+import { isBriefOpenAccess, useOpenAccessClock } from './access'
 
 import './App.css'
 
@@ -415,7 +415,8 @@ function App() {
   const [focusIndex, setFocusIndex] = useState(0)
   const [secondaryIndex, setSecondaryIndex] = useState(0)
   const [gateOpen, setGateOpen] = useState(false)
-  const recruiterOpenAccess = isBriefOpenAccess()
+  const openAccessNow = useOpenAccessClock()
+  const recruiterOpenAccess = isBriefOpenAccess(openAccessNow)
   const reducedMotion = useReducedMotion()
   const { scrollY } = useScroll()
   const papyrusHeight = useTransform(scrollY, [0, 200, 350, 550], [0, 360, 360, 0])
@@ -765,6 +766,7 @@ function App() {
               <button type="button" className="nav-recruiter" onClick={() => setGateOpen(true)}>
                 <span className="nav-recruiter__dot" aria-hidden="true" />
                 Recruiter
+                {recruiterOpenAccess && <span className="nav-recruiter__badge">brief open</span>}
               </button>
             </li>
           </ul>

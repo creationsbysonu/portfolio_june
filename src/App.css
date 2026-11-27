@@ -1276,6 +1276,18 @@
   background: #2a2622;
 }
 
+.nav-recruiter__badge {
+  padding: 2px 7px;
+  border-radius: 999px;
+  background: rgba(216, 180, 122, 0.2);
+  color: #d8b47a;
+  font-family: var(--mono);
+  font-size: 0.56rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
 .nav-recruiter__dot,
 .recruiter-fab__dot,
 .recruiter-gate__dot {
