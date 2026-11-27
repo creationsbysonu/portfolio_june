@@ -198,6 +198,81 @@
   color: var(--text);
 }
 
+.brief-guide {
+  display: grid;
+  gap: 12px;
+}
+
+.brief-guide-label {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-warm);
+}
+
+.brief-guide-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.brief-guide-step {
+  display: grid;
+  gap: 4px;
+  width: 100%;
+  height: 100%;
+  padding: 16px 18px;
+  border-radius: 16px;
+  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.55);
+  color: var(--text);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.brief-guide-step:hover {
+  transform: translateY(-2px);
+  border-color: rgba(20, 20, 20, 0.28);
+  background: #fff;
+}
+
+.brief-guide-step:focus-visible {
+  outline: 2px solid var(--text-strong);
+  outline-offset: 2px;
+}
+
+.brief-guide-index {
+  font-family: var(--mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.12em;
+  color: rgba(20, 20, 20, 0.4);
+}
+
+.brief-guide-step strong {
+  font-family: var(--heading);
+  font-size: 0.98rem;
+  letter-spacing: -0.01em;
+  color: var(--text-strong);
+}
+
+.brief-guide-step span:last-child {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(20, 20, 20, 0.66);
+}
+
+#brief-fit,
+#brief-ai,
+#brief-work {
+  scroll-margin-top: 24px;
+}
+
 .brief-columns {
   display: grid;
   grid-template-columns: minmax(0, 1.75fr) minmax(0, 1fr);
@@ -503,6 +578,10 @@
     grid-template-columns: 1fr;
   }
 
+  .brief-guide-list {
+    grid-template-columns: 1fr;
+  }
+
   .brief-side {
     position: static;
   }
@@ -546,7 +625,8 @@
 
   .brief-header-actions,
   .brief-panel--contact,
-  .brief-footer {
+  .brief-footer,
+  .brief-guide {
     display: none;
   }
 

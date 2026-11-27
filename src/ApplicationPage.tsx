@@ -5,6 +5,24 @@ import { isBriefPublished, openAccessEndsLabel, useOpenAccessClock } from './acc
 import './App.css'
 import './ApplicationPage.css'
 
+const briefSteps = [
+  {
+    id: 'brief-fit',
+    title: 'Why I fit this role',
+    detail: 'The short version — support, implementation and reporting work, in my own words.',
+  },
+  {
+    id: 'brief-ai',
+    title: 'The AI/ML evidence',
+    detail: 'The paper and the major project behind the technical side of the panel.',
+  },
+  {
+    id: 'brief-work',
+    title: 'Work you can open',
+    detail: 'Live systems that map to branch-level support and reporting.',
+  },
+]
+
 const contactActions = [
   { label: 'Email me', href: 'mailto:studybysonugupta@gmail.com', primary: true },
   { label: 'LinkedIn', href: 'https://www.linkedin.com/in/sonu-gupta-681329340/' },
@@ -96,9 +114,30 @@ export default function ApplicationPage() {
             </ul>
           </section>
 
+          <nav className="brief-guide" aria-label="How to read this brief">
+            <p className="brief-guide-label">Read in this order</p>
+            <ol className="brief-guide-list">
+              {briefSteps.map((step, index) => (
+                <li key={step.id}>
+                  <button
+                    type="button"
+                    className="brief-guide-step"
+                    onClick={() =>
+                      document.getElementById(step.id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                    }
+                  >
+                    <span className="brief-guide-index">{String(index + 1).padStart(2, '0')}</span>
+                    <strong>{step.title}</strong>
+                    <span>{step.detail}</span>
+                  </button>
+                </li>
+              ))}
+            </ol>
+          </nav>
+
           <div className="brief-columns">
             <div className="brief-content">
-              <section className="brief-block">
+              <section className="brief-block" id="brief-fit">
                 <h2>Why I fit this role</h2>
                 <div className="brief-points">
                   {application.fitPoints.map((point, index) => (
@@ -111,7 +150,7 @@ export default function ApplicationPage() {
                 </div>
               </section>
 
-              <section className="brief-block">
+              <section className="brief-block" id="brief-ai">
                 <h2>AI/ML depth</h2>
                 <p className="brief-block-note">
                   The panel took the AI/ML side seriously, so here is the evidence behind it — a major project,
@@ -177,7 +216,7 @@ export default function ApplicationPage() {
             </aside>
           </div>
 
-          <section className="brief-block brief-block--wide">
+          <section className="brief-block brief-block--wide" id="brief-work">
             <h2>Relevant work</h2>
             <div className="brief-work-grid">
               {application.work.map((item) => (

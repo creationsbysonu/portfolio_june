@@ -22,8 +22,10 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
   const [value, setValue] = useState('')
   const [error, setError] = useState('')
   const [showNumberForm, setShowNumberForm] = useState(false)
+  const [copied, setCopied] = useState(false)
   const now = useOpenAccessClock()
   const inputRef = useRef<HTMLInputElement>(null)
+  const copyTimer = useRef<number>(0)
 
   const openAccess = isBriefOpenAccess(now)
   const openApplication = OPEN_ACCESS_BRIEF_NUMBER ? findApplication(OPEN_ACCESS_BRIEF_NUMBER) : undefined
@@ -32,6 +34,7 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
     if (!open) {
       setError('')
       setShowNumberForm(false)
+      setCopied(false)
       return
     }
 
@@ -54,6 +57,31 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
     const focusTimer = window.setTimeout(() => inputRef.current?.focus(), 120)
     return () => window.clearTimeout(focusTimer)
   }, [open, showNumberForm])
+
+  useEffect(() => () => window.clearTimeout(copyTimer.current), [])
+
+  const copyBriefLink = async () => {
+    const url = briefHref(OPEN_ACCESS_BRIEF_NUMBER)
+
+    try {
+      await navigator.clipboard.writeText(url)
+    } catch {
+      // The async Clipboard API needs a secure origin; fall back to a hidden textarea.
+      const field = document.createElement('textarea')
+      field.value = url
+      field.setAttribute('readonly', '')
+      field.style.position = 'fixed'
+      field.style.opacity = '0'
+      document.body.appendChild(field)
+      field.select()
+      document.execCommand('copy')
+      field.remove()
+    }
+
+    setCopied(true)
+    window.clearTimeout(copyTimer.current)
+    copyTimer.current = window.setTimeout(() => setCopied(false), 2200)
+  }
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault()
@@ -140,7 +168,13 @@ export default function RecruiterGate({ open, onClose }: RecruiterGateProps) {
               >
                 {gateCopy.open.openBrief}
               </a>
+              <button type="button" className="recruiter-gate__copy-link" onClick={copyBriefLink}>
+                {copied ? gateCopy.open.copiedLink : gateCopy.open.copyLink}
+              </button>
             </div>
+            <p className="sr-only" role="status">
+              {copied ? 'Brief link copied to the clipboard.' : ''}
+            </p>
 
             <div className="recruiter-gate__footer">
               <button

@@ -135,6 +135,23 @@
   margin-top: 20px;
 }
 
+.recruiter-gate__copy-link {
+  padding: 14px 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(20, 20, 20, 0.18);
+  background: transparent;
+  color: var(--text-strong);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease;
+}
+
+.recruiter-gate__copy-link:hover {
+  background: rgba(20, 20, 20, 0.05);
+  border-color: rgba(20, 20, 20, 0.32);
+}
+
 .recruiter-gate__form {
   display: flex;
   gap: 10px;
@@ -224,7 +241,8 @@
     letter-spacing: 0.06em;
   }
 
-  .recruiter-gate__open-actions .cta-button {
+  .recruiter-gate__open-actions .cta-button,
+  .recruiter-gate__copy-link {
     width: 100%;
   }
 

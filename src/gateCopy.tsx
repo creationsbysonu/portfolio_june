@@ -16,6 +16,8 @@ export const gateCopy = {
     ),
     timeLeftSuffix: 'of open access',
     openBrief: 'Open the interview brief ↗',
+    copyLink: 'Copy link',
+    copiedLink: 'Link copied ✓',
     numberLink: 'I have an application number',
     resumeLink: 'Resume',
   },
