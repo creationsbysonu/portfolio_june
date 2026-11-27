@@ -44,7 +44,7 @@ export const applications: Record<string, ApplicationProfile> = {
     location: 'Nepal',
     interviewedOn: 'November 26, 2026',
     statusLabel: 'Interviewed',
-    openAccessUntil: '2026-11-30T23:59:59+05:45',
+    openAccessUntil: '2026-12-26T23:59:59+05:45',
     summary:
       'Application number 922497 is the brief I promised the panel: the support and implementation work I do day to day, plus the AI/ML research behind the systems I build. Everything below is drawn from the resume and the two attached PDFs — no filler.',
     focusTags: [
